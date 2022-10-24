@@ -42,13 +42,13 @@ function noop () {}
 
 describe('El método estático `$Promise.resolve`', function(){
 
-  xit('es una función, y no una que ya hemos escrito', function(){
+  it('es una función, y no una que ya hemos escrito', function(){
     expect( typeof $Promise.resolve ).toBe( 'function' );
     var promise = new $Promise(noop);
     expect( $Promise.resolve ).not.toBe( promise._internalResolve );
   });
 
-  xit('toma un <valor plano A> y devuelve una <promesa para A>', function(){
+  it('toma un <valor plano A> y devuelve una <promesa para A>', function(){
     [42, 'hi', {}, undefined, /cool/, false].forEach(value => {
       var promise = $Promise.resolve(value);
       expect( promise instanceof $Promise ).toBe( true );
@@ -60,7 +60,7 @@ describe('El método estático `$Promise.resolve`', function(){
 
   // Esto sería mas complejo con "then"s, pero vamos a ignorar eso.
 
-  xit('toma una <promesa para A> y devuelve la misma <promesa para A>', function(){
+  it('toma una <promesa para A> y devuelve la misma <promesa para A>', function(){
     var firstPromise = new $Promise(noop);
     var secondPromise = $Promise.resolve(firstPromise);
     expect( secondPromise ).toBe( firstPromise );
@@ -74,7 +74,7 @@ describe('El método estático `$Promise.resolve`', function(){
   // Este spec debería ya funcionar si lo de arriba funciona.
   // Lee a través de las assertions y tratá de entender que demuestran.
 
-  xit('demuestra porque "resolved" y "fulfilled" no son sinónimos', function(){
+  it('demuestra porque "resolved" y "fulfilled" no son sinónimos', function(){
     var rejectedPromise = new $Promise(function (resolve, reject) {
       reject();
     });
@@ -105,7 +105,7 @@ describe('El método estático `$Promise.all`', function(){
     jasmine.addMatchers(customMatchers);
   });
 
-  xit('es una función', function(){
+  it('es una función', function(){
     expect( typeof $Promise.all ).toBe( 'function' );
   });
 
@@ -113,7 +113,7 @@ describe('El método estático `$Promise.all`', function(){
   // [iterable](https://mzl.la/1SopN1G), pero esto va mas alla del
   // scope de Pledge. Nuestro `.all` solo necesita soportar arreglos.
 
-  xit('toma un solo argumento de un arreglo', function(){
+  it('toma un solo argumento de un arreglo', function(){
     // Pasando un arreglo dentro de `$Promise.all` causa ningún error.
     function callingAllWithArrays () {
       $Promise.all([]);
